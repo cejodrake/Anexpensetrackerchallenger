@@ -1,7 +1,7 @@
-const mongoose = requier('mongoose');
+const mongoose = require('mongoose');
 const Joi = require('joi');
 
-const categorieSchema = new mongoose.genreSchema({
+const categorieSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -20,6 +20,6 @@ function validateCategories(categorie) {
 
 }
 
-exports.categorie = Categorie;
+exports.Categorie = Categorie;
 exports.validate = validateCategories;
 exports.categorieSchema = categorieSchema;
