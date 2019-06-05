@@ -10,7 +10,7 @@ const categorieSchema = new mongoose.genreSchema({
     }
 });
 
-const Categorie = mongoose.model('Cagtegories', categorieSchema);
+const Categorie = mongoose.model('Categories', categorieSchema);
 
 function validateCategories(categorie) {
     const schema = {
