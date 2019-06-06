@@ -13,17 +13,14 @@ const Expense = mongoose.model('Expenses', new mongoose.Schema({
     categorie: {
         type: categorieSchema,
         required: true,
-
     },
     total: {
         type: Number,
         required: true,
-
-
     },
     comments: {
         type: String,
-
+        required: true
     }
 }))
 
@@ -31,7 +28,8 @@ function validate(expense) {
 
     const schema = {
         categorieId: Joi.objectId().required(),
-        total: Joi.number().min(0).required()
+        total: Joi.number().min(0).required(),
+        comments: Joi.string().max(50)
     };
 
     return Joi.validate(expense, schema);
