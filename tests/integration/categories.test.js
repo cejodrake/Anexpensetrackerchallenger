@@ -36,7 +36,7 @@ describe('/api/categories', () => {
 
     describe('POST', () => {
 
-        const info = () => {
+        const requesClient = () => {
             return request(server).post('/api/categories').send({ nameCategore });
         };
         beforeEach(() => {
@@ -45,13 +45,13 @@ describe('/api/categories', () => {
 
         it('should return error 400 if name is less than 5 characters', async () => {
             nameCategore = "abcd";
-            const res = await info();
+            const res = await requesClient();
             expect(res.status).toBe(400);
         });
 
         it('should return error 400 if the name is empty', async () => {
             nameCategore = "";
-            const res = await info();
+            const res = await requesClient();
             expect(res.status).toBe(400);
         })
 
