@@ -30,7 +30,7 @@ function validate(expense) {
         categorieId: Joi.objectId().required(),
         total: Joi.number().min(0).required(),
         comments: Joi.string().max(50),
-        date: Joi.date().format('YYYY-MM-DD').required()
+        date: Joi.date().required()
     };
 
     return Joi.validate(expense, schema);

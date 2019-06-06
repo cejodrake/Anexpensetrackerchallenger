@@ -22,11 +22,13 @@ describe('/api/expenses', () => {
         categorieId = mongoose.Types.ObjectId();
 
         expense = new Expense({
-
+            date: dateTest,
             categorie: {
                 _id: categorieId,
                 name: "burger king"
             },
+            total: totalTest,
+            comments: commentsTest
 
         });
         await expense.save();
@@ -37,9 +39,10 @@ describe('/api/expenses', () => {
         await Expense.remove({});
     })
 
-    it('should return error 200 if  expense is save ', async () => {
+    it('should return error 200 if   has a valid request ', async () => {
 
         const res = await info();
+
         expect(res.status).toBe(200);
     })
 });
