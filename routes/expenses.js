@@ -27,7 +27,7 @@ router.post('/', asyncMiddleware(async (req, res) => {
     }
 
     const expense = new Expense({
-        date: new Date('2013-12-12T16:00:00.000Z'),
+        date: req.body.date,
         categorie: {
 
             _id: categorie._id,
