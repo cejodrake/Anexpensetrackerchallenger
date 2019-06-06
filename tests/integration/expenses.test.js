@@ -50,8 +50,10 @@ describe('/api/expenses', () => {
     });
 
     afterEach(async () => {
-        await server.close();
+       
         await Expense.remove({});
+        await categorie.remove({})
+        await server.close();
     })
 
     it('should return error 200 if   has a valid request ', async () => {

@@ -5,6 +5,6 @@ module.exports = function () {
     const db = config.get('db');
     mongoose.set('useCreateIndex', true);
     mongoose.connect(db, { useNewUrlParser: true }).then(() => {
-        console.log(`Listening on port ${db}...`)
+
     })
 }

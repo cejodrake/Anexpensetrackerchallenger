@@ -4,28 +4,30 @@ const { Categorie } = require('../../models/categorie');
 let server;
 let nameCategore;
 
-const categories = [
-    { name: 'coffee' },
-    { name: 'te' },
-    { name: 'snack' }
-
-]
 
 describe('/api/categories', () => {
     beforeEach(() => { server = require('../../index') });
 
     afterEach(async () => {
 
-        await Categorie.deleteMany({});
+        await Categorie.remove({});
         await server.close();
     });
 
     describe('GET / ', () => {
         it('should return all categories ', async () => {
 
+            const categories = [
+                { name: 'coffee' },
+                { name: 'te' },
+                { name: 'snack' }
+
+            ]
             await Categorie.collection.insertMany(categories, function (error, docus) { });
 
             const res = await request(server).get('/api/categories');
+            console.log(res.body.length)
+            console.log(res.body);
 
             expect(res.status).toBe(200);
             expect(res.body.length).toBe(3);
