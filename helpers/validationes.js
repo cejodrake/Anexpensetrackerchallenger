@@ -1,8 +1,6 @@
-
-
 const Joi = require('joi');
 
-export function validateInputsExpenses(expense) {
+module.exports = function validateInputsExpenses(expense) {
 
     const schema = {
         categorie: Joi.objectId().require(),
