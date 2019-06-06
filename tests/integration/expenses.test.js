@@ -5,14 +5,16 @@ const { Categorie } = require('../../models/categorie');
 
 let server;
 
+
 describe('/api/expenses', () => {
 
     let expense;
+    let categorie;
     let date;
     let categorieId;
     let comments;
     let total;
-    let categorie;
+
 
     const requesClient = () => {
         return request(server).post('/api/expenses').send({ date, categorieId, total, comments });
@@ -27,32 +29,17 @@ describe('/api/expenses', () => {
         comments = "tes1t";
 
 
-        categorie = new Categorie({
-            _id: categorieId,
-            name: "MacDonals"
-        });
+        categorie = createCategorie(categorieId);
+        expense = createExpense(date, categorieId, total, comments);
 
         await categorie.save();
-
-
-        expense = new Expense({
-            date: date,
-            categorie: {
-                _id: categorieId,
-                name: "burger king"
-            },
-            total: total,
-            comments: comments
-
-
-        });
         await expense.save();
     });
 
     afterEach(async () => {
-       
+
         await Expense.remove({});
-        await categorie.remove({})
+        await Categorie.remove({})
         await server.close();
     })
 
@@ -71,3 +58,23 @@ describe('/api/expenses', () => {
     });
 
 });
+function createExpense(date, categorieId, total, comments) {
+    return new Expense({
+        date: date,
+        categorie: {
+            _id: categorieId,
+            name: "burger king"
+        },
+        total: total,
+        comments: comments
+
+
+    });
+}
+
+function createCategorie(categorieId) {
+    return new Categorie({
+        _id: categorieId,
+        name: "MacDonals"
+    });
+}
