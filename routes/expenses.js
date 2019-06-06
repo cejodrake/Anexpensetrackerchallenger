@@ -1,20 +1,20 @@
-const { Expense } = require('../models/expense');
+const { Expense, validate } = require('../models/expense');
 const { Categorie } = require('../models/categorie');
+const asyncMiddleware = require('../middleware/async');
 
-const { validateInputsExpenses } = require('../helpers/validationes');
 
 const express = require('express');
 const router = express.Router();
 
 
-router.get('/', async (req, res) => {
+router.get('/', asyncMiddleware(async (req, res) => {
     const allExpenses = await Expense.find();
     res.send(allExpenses);
 
-});
+}));
 
-route.pos('/', async (req, res) => {
-    const { error } = validateInputsExpenses(req.body);
+router.post('/', asyncMiddleware(async (req, res) => {
+    const { error } = validate(req.body);
 
     if (error) {
         return res.status(400).send(error.details[0].message);
@@ -40,6 +40,6 @@ route.pos('/', async (req, res) => {
     res.send(expense);
 
 
-})
+}));
 
-
+module.exports = router;

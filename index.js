@@ -3,7 +3,7 @@ const categories = require('./routes/categories');
 const expenses = require('./routes/expenses');
 const express = require('express');
 require("./startup/db")()
-    ;
+
 const app = express();
 
 
