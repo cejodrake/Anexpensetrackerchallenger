@@ -15,8 +15,9 @@ describe('/api/categories', () => {
     beforeEach(() => { server = require('../../index') });
 
     afterEach(async () => {
-        await server.close();
+
         await Categorie.deleteMany({});
+        await server.close();
     });
 
     describe('GET / ', () => {

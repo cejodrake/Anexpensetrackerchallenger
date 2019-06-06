@@ -2,7 +2,7 @@ const request = require('supertest');
 const mongoose = require('mongoose')
 const { Expense } = require('../../models/expense');
 const { Categorie } = require('../../models/categorie');
-const app = require('../../index');
+
 let server;
 
 describe('/api/expenses', () => {
@@ -12,6 +12,7 @@ describe('/api/expenses', () => {
     let categorieId;
     let comments;
     let total;
+    let categorie;
 
     const requesClient = () => {
         return request(server).post('/api/expenses').send({ date, categorieId, total, comments });
@@ -25,8 +26,13 @@ describe('/api/expenses', () => {
         total = 100;
         comments = "tes1t";
 
-        console.log(categorieId);
 
+        categorie = new Categorie({
+            _id: categorieId,
+            name: "MacDonals"
+        });
+
+        await categorie.save();
 
 
         expense = new Expense({
@@ -51,7 +57,15 @@ describe('/api/expenses', () => {
     it('should return error 200 if   has a valid request ', async () => {
 
         const res = await requesClient();
-        console.log(res.text);
+
         expect(res.status).toBe(200);
-    })
+    });
+    it('should return  error 400 if Date is null', async () => {
+
+        date = "";
+        const res = await requesClient();
+        expect(res.status).toBe(400);
+
+    });
+
 });
