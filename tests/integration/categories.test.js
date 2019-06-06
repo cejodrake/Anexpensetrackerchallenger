@@ -26,8 +26,7 @@ describe('/api/categories', () => {
             await Categorie.collection.insertMany(categories, function (error, docus) { });
 
             const res = await request(server).get('/api/categories');
-            console.log(res.body.length)
-            console.log(res.body);
+
 
             expect(res.status).toBe(200);
             expect(res.body.length).toBe(3);

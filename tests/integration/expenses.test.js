@@ -30,6 +30,7 @@ describe('/api/expenses', () => {
 
 
         categorie = createCategorie(categorieId);
+
         expense = createExpense(date, categorieId, total, comments);
 
         await categorie.save();
@@ -52,6 +53,14 @@ describe('/api/expenses', () => {
     it('should return  error 400 if Date is null', async () => {
 
         date = "";
+        const res = await requesClient();
+        expect(res.status).toBe(400);
+
+    });
+
+    it('should return  error 400 if total no is numeric ', async () => {
+
+        total = "sss";
         const res = await requesClient();
         expect(res.status).toBe(400);
 
