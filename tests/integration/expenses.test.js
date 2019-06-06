@@ -7,14 +7,13 @@ let server;
 describe('/api/expenses', () => {
 
     let expense;
-    let dateTest = "2019-06-05";
+    let dateTest = '2019-05-19';
     let categorieId;
+    let commentsTest = " test one"
     let totalTest = 100;
 
-
-
     const info = () => {
-        return request(server).post('/api/expenses').send({ dateTest, categorieId, totalTest });
+        return request(server).post('/api/expenses').send({ dateTest, categorieId, totalTest, commentsTest });
 
     };
 
@@ -23,12 +22,12 @@ describe('/api/expenses', () => {
         categorieId = mongoose.Types.ObjectId();
 
         expense = new Expense({
-            date: dateTest,
+
             categorie: {
                 _id: categorieId,
                 name: "burger king"
             },
-            total: totalTest
+
         });
         await expense.save();
     });
@@ -38,9 +37,9 @@ describe('/api/expenses', () => {
         await Expense.remove({});
     })
 
-    it('should return error 400 if date if not provided from client ', async () => {
-        dateTest = "f";
+    it('should return error 200 if  expense is save ', async () => {
+
         const res = await info();
-        expect(res.status).toBe(400);
+        expect(res.status).toBe(200);
     })
 });
