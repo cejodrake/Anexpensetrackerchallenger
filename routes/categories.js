@@ -1,6 +1,7 @@
 const { Categorie, validate } = require('../models/categorie');
 
 const asyncMiddleware = require('../middleware/async');
+
 const express = require('express');
 const router = express.Router();
 
