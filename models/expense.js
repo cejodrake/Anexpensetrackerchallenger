@@ -24,18 +24,4 @@ const Expense = mongoose.model('Expenses', new mongoose.Schema({
     }
 }))
 
-function validate(expense) {
-
-    const schema = {
-        categorieId: Joi.objectId().required(),
-        total: Joi.number().min(0).required(),
-        comments: Joi.string().max(50),
-        date: Joi.date().required()
-    };
-
-    return Joi.validate(expense, schema);
-
-}
-
 exports.Expense = Expense;
-exports.validate = validate;

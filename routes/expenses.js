@@ -2,6 +2,8 @@ const { Expense, validate } = require('../models/expense');
 const { Categorie } = require('../models/categorie');
 const asyncMiddleware = require('../middleware/async');
 
+const { validateInputsExpenses } = require('../helpers/validationes');
+
 
 const express = require('express');
 const router = express.Router();
@@ -14,7 +16,8 @@ router.get('/', asyncMiddleware(async (req, res) => {
 }));
 
 router.post('/', asyncMiddleware(async (req, res) => {
-    const { error } = validate(req.body);
+
+    const { error } = validateInputsExpenses(req.body);
 
     if (error) {
         return res.status(400).send(error.details[0].message);
@@ -26,7 +29,17 @@ router.post('/', asyncMiddleware(async (req, res) => {
         return res.status(400).send("Invalid categorie ");
     }
 
-    const expense = new Expense({
+    const expense = createExpense(req, categorie);
+
+    await expense.save();
+
+    res.send(expense);
+
+}));
+
+
+function createExpense(req, categorie) {
+    return new Expense({
         date: req.body.date,
         categorie: {
 
@@ -36,11 +49,8 @@ router.post('/', asyncMiddleware(async (req, res) => {
         total: req.body.total,
         comments: req.body.comments
     })
-    await expense.save();
-
-    res.send(expense);
 
 
-}));
+}
 
 module.exports = router;

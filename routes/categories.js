@@ -1,5 +1,5 @@
-const { Categorie, validate } = require('../models/categorie');
-
+const { Categorie } = require('../models/categorie');
+const { validateInputsCategories } = require('../helpers/validationes');
 const asyncMiddleware = require('../middleware/async');
 
 const express = require('express');
@@ -13,7 +13,7 @@ router.get('/', asyncMiddleware(async (req, res) => {
 
 router.post('/', asyncMiddleware(async (req, res) => {
 
-    const { error } = validate(req.body);
+    const { error } = validateInputsCategories(req.body);
     if (error) {
         return res.status(400).send(error.details[0].message);
     }
