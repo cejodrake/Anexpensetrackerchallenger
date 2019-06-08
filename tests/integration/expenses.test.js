@@ -5,6 +5,15 @@ const { Categorie } = require('../../models/categorie');
 
 let server;
 
+describe('GET', () => {
+    it('should return all expenses', async () => {
+
+        const expenses = []
+
+    });
+
+});
+
 
 describe('/api/expenses', () => {
 
@@ -43,6 +52,10 @@ describe('/api/expenses', () => {
         await Categorie.remove({})
         await server.close();
     })
+
+    it('should return all expenses create for the user ', () => {
+
+    });
 
     it('should return error 200 if   has a valid request ', async () => {
 
