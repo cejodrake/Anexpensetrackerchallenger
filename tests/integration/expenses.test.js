@@ -40,6 +40,7 @@ describe('/api/expenses', () => {
             const res = await request(server).get('/api/expenses');
 
             expect(res.status).toBe(200);
+            expect(res.body.length).toBe(3);
 
 
         });
