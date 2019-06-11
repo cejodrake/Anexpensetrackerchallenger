@@ -1,4 +1,4 @@
-const { Expense, validate } = require('../models/expense');
+const { Expense } = require('../models/expense');
 const { Categorie } = require('../models/categorie');
 const asyncMiddleware = require('../middleware/async');
 

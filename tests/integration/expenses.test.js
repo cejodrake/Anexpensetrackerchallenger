@@ -5,14 +5,48 @@ const { Categorie } = require('../../models/categorie');
 
 let server;
 
-describe('GET', () => {
-    it('should return all expenses', async () => {
+describe('/api/expenses', () => {
 
-        const expenses = []
+    beforeEach(async () => { server = require('../../index') });
+
+    afterEach(async () => {
+
+        await Expense.remove({});
+        await server.close();
 
     });
 
+    describe('GET /', () => {
+        it('should return all expenses', async () => {
+
+
+            const expenses = [
+                {
+                    categorie: "Burguer King",
+                    total: 100
+                },
+                {
+                    categorie: "MacDonalds",
+                    total: 150
+                },
+                {
+                    categorie: "Coffe Starbuck",
+                    total: 130
+                },
+            ];
+
+
+            await Expense.collection.insertMany(expenses, function (error, docus) { });
+            const res = await request(server).get('/api/expenses');
+
+            expect(res.status).toBe(200);
+
+
+        });
+
+    });
 });
+
 
 
 describe('/api/expenses', () => {
