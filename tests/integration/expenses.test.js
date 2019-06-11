@@ -1,5 +1,6 @@
 const request = require('supertest');
 const mongoose = require('mongoose')
+const moment = require('moment');
 const { Expense } = require('../../models/expense');
 const { Categorie } = require('../../models/categorie');
 
@@ -18,29 +19,54 @@ describe('/api/expenses', () => {
 
     describe('GET /', () => {
         it('should return all expenses', async () => {
-
+            let date1 = moment("12-25-1995", "MM-DD-YYYY");
 
             const expenses = [
                 {
-                    categorie: "Burguer King",
-                    total: 100
+                    date: date1,
+                    categorie: {
+
+                        _id: 1,
+                        name: "macdonalds"
+                    },
+                    total: 100,
+                    comments: ""
                 },
                 {
-                    categorie: "MacDonalds",
-                    total: 150
+                    date: "2019-11-05",
+                    categorie: {
+
+                        _id: 2,
+                        name: "starbuck"
+                    },
+                    total: 102,
+                    comments: ""
                 },
+
                 {
-                    categorie: "Coffe Starbuck",
-                    total: 130
-                },
+                    date: "2019-12-05",
+                    categorie: {
+
+                        _id: 3,
+                        name: "burger king"
+                    },
+                    total: 160,
+                    comments: ""
+                }
+
+
             ];
 
 
             await Expense.collection.insertMany(expenses, function (error, docus) { });
             const res = await request(server).get('/api/expenses');
 
+            console.log(res.body);
+            console.log(date1);
             expect(res.status).toBe(200);
             expect(res.body.length).toBe(3);
+            expect(res.body.some(e => e.date === "12-25-1995")).toBeTruthy();
+
 
 
         });
