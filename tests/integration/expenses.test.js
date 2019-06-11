@@ -19,40 +19,44 @@ describe('/api/expenses', () => {
 
     describe('GET /', () => {
         it('should return all expenses', async () => {
-            let date1 = moment("12-25-1995", "MM-DD-YYYY");
+            const date1 = moment("2013-01-05", "MM-DD-YYYY", true).creationData === {
+                input: "2013-01-05",
+                format: "YYYY-MM-DD",
+
+                strict: true,
+            };
 
             const expenses = [
                 {
-                    date: date1,
+                    date: new Date(moment("2013-01-05").format('YYYY-MM-DD, ll')),
                     categorie: {
 
-                        _id: 1,
                         name: "macdonalds"
                     },
                     total: 100,
                     comments: ""
                 },
-                {
-                    date: "2019-11-05",
-                    categorie: {
-
-                        _id: 2,
-                        name: "starbuck"
-                    },
-                    total: 102,
-                    comments: ""
-                },
-
-                {
-                    date: "2019-12-05",
-                    categorie: {
-
-                        _id: 3,
-                        name: "burger king"
-                    },
-                    total: 160,
-                    comments: ""
-                }
+                /* {
+                     date: "2019-11-05",
+                     categorie: {
+ 
+                         _id: 2,
+                         name: "starbuck"
+                     },
+                     total: 102,
+                     comments: ""
+                 },
+ 
+                 {
+                     date: "2019-12-05",
+                     categorie: {
+ 
+                         _id: 3,
+                         name: "burger king"
+                     },
+                     total: 160,
+                     comments: ""
+                 }*/
 
 
             ];
@@ -64,8 +68,8 @@ describe('/api/expenses', () => {
             console.log(res.body);
             console.log(date1);
             expect(res.status).toBe(200);
-            expect(res.body.length).toBe(3);
-            expect(res.body.some(e => e.date === "12-25-1995")).toBeTruthy();
+            expect(res.body.length).toBe(1);
+            expect(res.body.some(e => e.date === "2013-01-02")).toBeTruthy();
 
 
 
