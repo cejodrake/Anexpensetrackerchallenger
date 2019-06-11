@@ -19,18 +19,18 @@ describe('/api/expenses', () => {
 
     describe('GET /', () => {
         it('should return all expenses', async () => {
-            const date1 = moment("2013-01-05", "MM-DD-YYYY", true).creationData === {
-                input: "2013-01-05",
-                format: "YYYY-MM-DD",
+            const date = new Date("2019-10-03");
+            const date1 = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
 
-                strict: true,
-            };
+
 
             const expenses = [
                 {
-                    date: new Date(moment("2013-01-05").format('YYYY-MM-DD, ll')),
-                    categorie: {
 
+                    _id: 1,
+                    date: date1,
+                    categorie: {
+                        _id: 1,
                         name: "macdonalds"
                     },
                     total: 100,
@@ -69,7 +69,7 @@ describe('/api/expenses', () => {
             console.log(date1);
             expect(res.status).toBe(200);
             expect(res.body.length).toBe(1);
-            expect(res.body.some(e => e.date === "2013-01-02")).toBeTruthy();
+            expect(res.body.some(e => e.date === "2019-10-03")).toBeTruthy();
 
 
 
