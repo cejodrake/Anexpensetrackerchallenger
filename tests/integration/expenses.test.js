@@ -19,16 +19,16 @@ describe('/api/expenses', () => {
 
     describe('GET /', () => {
         it('should return all expenses', async () => {
-            const date = new Date("2019-10-03");
-            const date1 = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
+
 
 
 
             const expenses = [
+
                 {
 
                     _id: 1,
-                    date: date1,
+                    date: new Date("2016-02-02"),
                     categorie: {
                         _id: 1,
                         name: "macdonalds"
@@ -36,29 +36,18 @@ describe('/api/expenses', () => {
                     total: 100,
                     comments: ""
                 },
-                /* {
-                     date: "2019-11-05",
-                     categorie: {
- 
-                         _id: 2,
-                         name: "starbuck"
-                     },
-                     total: 102,
-                     comments: ""
-                 },
- 
-                 {
-                     date: "2019-12-05",
-                     categorie: {
- 
-                         _id: 3,
-                         name: "burger king"
-                     },
-                     total: 160,
-                     comments: ""
-                 }*/
 
+                {
 
+                    _id: 2,
+                    date: new Date("2017-05-02"),
+                    categorie: {
+                        _id: 2,
+                        name: "burgeking"
+                    },
+                    total: 150,
+                    comments: ""
+                },
             ];
 
 
@@ -66,12 +55,16 @@ describe('/api/expenses', () => {
             const res = await request(server).get('/api/expenses');
 
             console.log(res.body);
-            console.log(date1);
             expect(res.status).toBe(200);
-            expect(res.body.length).toBe(1);
-            expect(res.body.some(e => e.date === "2019-10-03")).toBeTruthy();
+            expect(res.body.length).toBe(2);
 
+            expect(res.body.some(e => e.date === "2016-02-02T00:00:00.000Z"
+                && e.total === 100
+                && e.categorie.name === "macdonalds")).toBeTruthy();
 
+            expect(res.body.some(e => e.date === "2017-05-02T00:00:00.000Z"
+                && e.total === 150
+                && e.categorie.name === "burgeking")).toBeTruthy();
 
         });
 
