@@ -17,25 +17,13 @@ describe('/api/expenses', () => {
 
     });
 
+
     describe('GET /', () => {
         it('should return all expenses', async () => {
 
-
-
-
             const expenses = [
 
-                {
 
-                    _id: 1,
-                    date: new Date("2016-02-02"),
-                    categorie: {
-                        _id: 1,
-                        name: "macdonalds"
-                    },
-                    total: 100,
-                    comments: ""
-                },
 
                 {
 
