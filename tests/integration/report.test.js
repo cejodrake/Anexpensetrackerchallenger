@@ -8,12 +8,12 @@ let server;
 
 describe(api, () => {
 
-    let date1 = '2019-01-01';
+    let dateInitial = '2019-01-01';
     let date2 = '2019-01-02'
 
     const requesClient = () => {
         return request(server).get(api).send(
-            { date1, date2 }
+            { dateInitial, date2 }
         );
     }
 
@@ -31,6 +31,13 @@ describe(api, () => {
         const res = await requesClient();
 
         expect(res.status).toBe(200);
+
+    });
+
+    it('date1 should be not less than date now', async () => {
+        let dateNow = Date.now();
+        const res = await requesClient();
+        expect(res.status).toBe(400);
 
     });
 
