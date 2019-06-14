@@ -48,7 +48,6 @@ describe('/api/expenses', () => {
             await Expense.collection.insertMany(expenses, function (error, docus) { });
             const res = await request(server).get('/api/expenses');
 
-
             expect(res.status).toBe(200);
             expect(res.body.length).toBe(2);
 
@@ -66,7 +65,6 @@ describe('/api/expenses', () => {
 });
 
 
-
 describe('/api/expenses', () => {
 
     let expense;
@@ -78,7 +76,8 @@ describe('/api/expenses', () => {
 
 
     const requesClient = () => {
-        return request(server).post('/api/expenses').send({ date, categorieId, total, comments });
+        return request(server).post('/api/expenses')
+            .send({ date, categorieId, total, comments });
 
     };
 
