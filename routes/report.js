@@ -9,15 +9,18 @@ const router = express.Router();
 router.get('/', async (req, res) => {
 
     let dateInitial = moment(req.body.dateInitial);
+    let dateEnd = moment(req.body.dateEnd);
+
     let now = moment(new Date());
 
-    let dateComparation = dateInitial.diff(now, 'day');
-    console.log(dateInitial + " ---" + now);
+    let dateComparationInitial = dateInitial.diff(now, 'day');
+    let dateComparationEnd = dateEnd.diff(now, 'day');
 
-    console.log(dateComparation);
+    if (dateComparationInitial < 0)
+        return res.status(400).send('Date inital not valid');
 
-    if (dateComparation < 0)
-        return res.status(400).send('Date Initial is less than date now');
+    if (dateComparationEnd < 0)
+        return res.status(400).send('Date end not valid ')
 
     return res.status(200).send();
 
