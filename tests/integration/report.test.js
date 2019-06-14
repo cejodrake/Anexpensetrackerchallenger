@@ -8,6 +8,9 @@ let server;
 
 describe(api, () => {
 
+    let date1 = '2019-01-01';
+    let date2 = '2019-01-02'
+
     const requesClient = () => {
         return request(server).post(api).send(
             { date1, date2 }
@@ -19,6 +22,7 @@ describe(api, () => {
     });
     afterEach(async () => {
         await server.close();
-    })
+    });
+
 
 });
