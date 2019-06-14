@@ -5,15 +5,17 @@ const api = '/api/report'
 
 
 let server;
+let dateInitial;
+let dateEnd;
 
 describe(api, () => {
 
-    let dateInitial = '2019-01-01';
-    let date2 = '2019-01-02'
+    dateInitial = '2019-06-12';
+    dateEnd = '2019-01-02'
 
     const requesClient = () => {
         return request(server).get(api).send(
-            { dateInitial, date2 }
+            { dateInitial, dateEnd }
         );
     }
 
@@ -28,14 +30,15 @@ describe(api, () => {
     // date1 shouldn't be  greater date2 date1 <=  date2
 
     it('should  return status 200  OK  ', async () => {
+        dateInitial = new Date();
         const res = await requesClient();
-
         expect(res.status).toBe(200);
 
     });
 
-    it('date1 should be not less than date now', async () => {
-        let dateNow = Date.now();
+    it('date Initial should  not less than date now', async () => {
+
+        dateInitial = "2019-06-12";
         const res = await requesClient();
         expect(res.status).toBe(400);
 

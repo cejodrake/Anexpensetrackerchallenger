@@ -16,10 +16,8 @@ router.get('/', async (req, res) => {
 
     console.log(dateComparation);
 
-    if (now < dateInitial) {
+    if (dateComparation < 0)
         return res.status(400).send('Date Initial is less than date now');
-
-    }
 
     return res.status(200).send();
 
