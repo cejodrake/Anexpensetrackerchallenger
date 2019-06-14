@@ -22,11 +22,17 @@ describe('/api/expenses', () => {
         it('should return all expenses', async () => {
 
             const expenses = [
-
-
-
                 {
-
+                    _id: 1,
+                    date: new Date("2016-02-02"),
+                    categorie: {
+                        _id: 1,
+                        name: "macdonalds"
+                    },
+                    total: 100,
+                    comments: ""
+                },
+                {
                     _id: 2,
                     date: new Date("2017-05-02"),
                     categorie: {
@@ -42,7 +48,7 @@ describe('/api/expenses', () => {
             await Expense.collection.insertMany(expenses, function (error, docus) { });
             const res = await request(server).get('/api/expenses');
 
-            console.log(res.body);
+
             expect(res.status).toBe(200);
             expect(res.body.length).toBe(2);
 
