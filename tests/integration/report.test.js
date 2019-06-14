@@ -12,7 +12,7 @@ describe(api, () => {
     let date2 = '2019-01-02'
 
     const requesClient = () => {
-        return request(server).post(api).send(
+        return request(server).get(api).send(
             { date1, date2 }
         );
     }
@@ -27,10 +27,11 @@ describe(api, () => {
     // date1 shouldn't be than  less to date now date1 < now.
     // date1 shouldn't be  greater date2 date1 <=  date2
 
-    it('date1 should be not less than date now', async () => {
-        let dateNow = Date.now();
+    it('should  return status 200  OK  ', async () => {
         const res = await requesClient();
-        expect(res.status).toBe(400);
+
+        expect(res.status).toBe(200);
 
     });
+
 });
