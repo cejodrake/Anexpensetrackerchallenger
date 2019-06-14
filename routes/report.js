@@ -12,10 +12,10 @@ router.get('/', async (req, res) => {
     let dateEnd = moment(req.body.dateEnd);
 
 
-    if (dateInitial.isValid()) return res.status(400).
+    if (!dateInitial.isValid()) return res.status(400).
         send('the format of date initial not is correct');
 
-    if (dateEnd.isValid()) return res.status(400)
+    if (!dateEnd.isValid()) return res.status(400)
         .send('the format of date end not is correct');
 
     let now = moment(new Date());
