@@ -1,3 +1,4 @@
+const moment = require('moment');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 
@@ -23,6 +24,15 @@ const validateInputsCategories = (categorie) => {
 
 }
 
+const validationesFormatDate = (req, res) => {
+    let dateInitial = moment(req.body.dateInitial);
+    let dateEnd = moment(req.body.dateEnd);
+
+    return dateInitial.isValid() || dateEnd.isValid();
+
+}
+
+module.exports.validationesFormatDate = validationesFormatDate;
 module.exports.validateInputsExpenses = validateInputsExpenses;
 module.exports.validateInputsCategories = validateInputsCategories;
 

@@ -26,8 +26,7 @@ describe(api, () => {
     afterEach(async () => {
         await server.close();
     });
-    // date1 shouldn't be than  less to date now date1 < now.
-    // date1 shouldn't be  greater date2 date1 <=  date2
+
 
 
 
