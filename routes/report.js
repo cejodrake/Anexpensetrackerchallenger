@@ -20,11 +20,7 @@ router.get('/', asyncMiddleware(async (req, res) => {
     let dateComparationEnd = dateEnd.diff(now, 'day');
 
 
-    if (dateComparationInitial < 0) {
-        return res.status(400).send('Date inital not valid');
-    };
-
-    if (dateComparationEnd < 0) {
+    if (dateComparationEnd < dateComparationInitial) {
         return res.status(400).send('Date end not valid ');
     }
 

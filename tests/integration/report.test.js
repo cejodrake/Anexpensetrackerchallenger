@@ -28,8 +28,6 @@ describe(api, () => {
     });
 
 
-
-
     it(' should  return error  400  if date end should  not less than date now', async () => {
 
         dateEnd = "2019-06-12";
