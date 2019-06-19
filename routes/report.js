@@ -1,7 +1,7 @@
 const { Expense } = require('../models/expense');
 const moment = require('moment');
 const asyncMiddleware = require('../middleware/async');
-const { validationesFormatDate } = require('../helpers/validationes');
+const { validationesFormatDate, validateDateEndLessDateInitial } = require('../helpers/validationes');
 
 const express = require('express');
 const router = express.Router();
@@ -13,17 +13,10 @@ router.get('/', asyncMiddleware(async (req, res) => {
 
     if (!validationesFormatDate(dateInitial, dateEnd))
         return res.status(400).send('Some Field date is not Correct Format');
-
-    let now = moment(new Date());
-
-    let dateComparationInitial = dateInitial.diff(now, 'day');
-    let dateComparationEnd = dateEnd.diff(now, 'day');
-
-
-    if (dateComparationEnd < dateComparationInitial) {
-        return res.status(400).send('Date end not valid ');
+    console.log(validateDateEndLessDateInitial);
+    if (!validateDateEndLessDateInitial(dateInitial, dateEnd)) {
+        return res.status(400).send('Date End should not be less than date Initial ');
     }
-
 
     return res.status(200).send();
 

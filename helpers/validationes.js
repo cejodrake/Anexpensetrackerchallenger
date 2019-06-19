@@ -26,10 +26,25 @@ const validateInputsCategories = (categorie) => {
 
 const validationesFormatDate = (dateInitial, dateEnd) => {
 
-    return dateInitial.isValid() || dateEnd.isValid();
+    return dateInitial.isValid() && dateEnd.isValid() ? true : false;
 }
 
 
+const validateDateEndLessDateInitial = (dateInitial, dateEnd) => {
+
+    return dateEnd.diff(dateInitial, 'day');
+
+    let now = moment(new Date());
+
+    let dateComparationInitial = dateInitial.diff(now, 'day');
+    let dateComparationEnd = dateEnd.diff(now, 'day');
+
+
+    return dateComparationInitial < dateComparationEnd ? true : false;
+
+}
+
+module.exports.validateDateEndLessDateInitial = validateDateEndLessDateInitial;
 module.exports.validationesFormatDate = validationesFormatDate;
 module.exports.validateInputsExpenses = validateInputsExpenses;
 module.exports.validateInputsCategories = validateInputsCategories;

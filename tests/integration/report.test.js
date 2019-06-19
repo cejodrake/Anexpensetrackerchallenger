@@ -28,23 +28,15 @@ describe(api, () => {
     });
 
 
-
-
     it(' should  return error  400  if date end should  not less than date now', async () => {
-
-        dateEnd = "2019-06-12";
+        dateInitial = "2016-06-19";
+        dateEnd = "2019-05-12";
         const res = await requestClient();
         expect(res.status).toBe(400);
 
     });
 
-    it(' should return error 400 if  date Initial should  not less than date now', async () => {
 
-        dateEnd = "2019-06-12";
-        const res = await requestClient();
-        expect(res.status).toBe(400);
-
-    });
 
     it(' should  return  error 400 if validate if dateInital  is format correct', async () => {
         dateInitial = "";
@@ -59,8 +51,7 @@ describe(api, () => {
     });
 
     it('should  return status 200  OK  ', async () => {
-        dateInitial = new Date();
-        dateEnd = new Date();
+
         const res = await requestClient();
         expect(res.status).toBe(200);
 
