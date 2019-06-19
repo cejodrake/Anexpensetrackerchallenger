@@ -11,7 +11,7 @@ router.get('/', asyncMiddleware(async (req, res) => {
     let dateInitial = moment(req.body.dateInitial);
     let dateEnd = moment(req.body.dateEnd);
 
-    if (!validationesFormatDate(req, res))
+    if (!validationesFormatDate(dateInitial, dateEnd))
         return res.status(400).send('Some Field date is not Correct Format');
 
     let now = moment(new Date());

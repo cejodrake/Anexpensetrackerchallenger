@@ -24,13 +24,11 @@ const validateInputsCategories = (categorie) => {
 
 }
 
-const validationesFormatDate = (req, res) => {
-    let dateInitial = moment(req.body.dateInitial);
-    let dateEnd = moment(req.body.dateEnd);
+const validationesFormatDate = (dateInitial, dateEnd) => {
 
     return dateInitial.isValid() || dateEnd.isValid();
-
 }
+
 
 module.exports.validationesFormatDate = validationesFormatDate;
 module.exports.validateInputsExpenses = validateInputsExpenses;
