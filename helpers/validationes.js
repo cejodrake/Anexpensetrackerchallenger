@@ -31,17 +31,7 @@ const validationesFormatDate = (dateInitial, dateEnd) => {
 
 
 const validateDateEndLessDateInitial = (dateInitial, dateEnd) => {
-
-    return dateEnd.diff(dateInitial, 'day');
-
-    let now = moment(new Date());
-
-    let dateComparationInitial = dateInitial.diff(now, 'day');
-    let dateComparationEnd = dateEnd.diff(now, 'day');
-
-
-    return dateComparationInitial < dateComparationEnd ? true : false;
-
+    return dateInitial.diff(dateEnd, 'day') < -1 ? true : false;
 }
 
 module.exports.validateDateEndLessDateInitial = validateDateEndLessDateInitial;

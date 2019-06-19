@@ -52,6 +52,8 @@ describe(api, () => {
 
     it('should  return status 200  OK  ', async () => {
 
+        dateInitial = "2019-06-02";
+        dateEnd = "2019-06-15";
         const res = await requestClient();
         expect(res.status).toBe(200);
 
