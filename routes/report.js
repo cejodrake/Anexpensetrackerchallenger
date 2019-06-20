@@ -14,9 +14,9 @@ router.get('/', asyncMiddleware(async (req, res) => {
     if (validateDateEndLessDateInitial(dateInitial, dateEnd))
         return res.status(400).send('Date End is less than Date Initial');
 
-
     if (!validationesFormatDate(dateInitial, dateEnd))
         return res.status(400).send('Some Field date is not Correct Format');
+
 
     return res.status(200).send();
 
