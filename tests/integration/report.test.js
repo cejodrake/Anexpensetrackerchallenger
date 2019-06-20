@@ -24,8 +24,9 @@ describe(api, () => {
 
     });
     afterEach(async () => {
-        await server.close();
         await Expense.remove({});
+        await server.close();
+
     });
 
 
@@ -44,16 +45,7 @@ describe(api, () => {
                 comments: ""
             },
             {
-                _id: 1,
-                date: new Date("2019-02-01"),
-                categorie: {
-                    _id: 1,
-                    name: "macdonalds"
-                },
-                total: 100,
-                comments: ""
-            }, {
-                _id: 1,
+                _id: 2,
                 date: new Date("2019-02-03"),
                 categorie: {
                     _id: 1,
@@ -63,43 +55,36 @@ describe(api, () => {
                 comments: ""
             },
             {
-                _id: 1,
-                date: new Date("2019-02-04"),
+                _id: 3,
+                date: new Date("2019-02-02"),
                 categorie: {
                     _id: 1,
                     name: "macdonalds"
                 },
-                total: 100,
+                total: 200,
                 comments: ""
-            },
+            }
 
-
-            {
-                _id: 2,
-                date: new Date("2019-05-02"),
-                categorie: {
-                    _id: 2,
-                    name: "burgeking"
-                },
-                total: 150,
-                comments: ""
-            },
 
         ];
-        await Expense.collection.insertMany(expenses, function (error, docus) { });
+        const d1 = await Expense.collection.insertMany(expenses, function (error, docus) { });
 
-        dateInitial = "2019-02-02"
-        dateEnd = "2019-03-30"
+        dateInitial = "'2019-02-01'"
+        dateEnd = "2019-02-05"
 
-       
-        res = await requestClient();
-        expect(res.body.length).toBe(4);
+
+        const res = await requestClient();
+
+
+
+
+        expect(res.body.length).toBe(3);
 
     });
 
 
     it(' should  return error  400  if date end should  not less than date now', async () => {
-
+        dateInitial = "2019-06-01";
         dateEnd = "2019-05-12";
         const res = await requestClient();
         expect(res.status).toBe(400);
