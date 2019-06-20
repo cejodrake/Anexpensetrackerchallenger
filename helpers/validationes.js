@@ -31,8 +31,9 @@ const validationesFormatDate = (dateInitial, dateEnd) => {
 
 
 const validateDateEndLessDateInitial = (dateInitial, dateEnd) => {
+
     return dateEnd.diff(dateInitial, 'day') < 0 ? true : false;
-   
+
 }
 
 module.exports.validateDateEndLessDateInitial = validateDateEndLessDateInitial;

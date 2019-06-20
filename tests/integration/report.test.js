@@ -1,5 +1,5 @@
 const request = require('supertest');
-const { Expense } = require('../models/expense');
+const { Expense } = require('../../models/expense');
 const api = '/api/report'
 
 
@@ -32,69 +32,68 @@ describe(api, () => {
 
 
     it('should  status 200 OK calculate all buy  categorie macDonals ', async () => {
-        /*   const expenses = [
-               {
-                   _id: 1,
-                   date: new Date("2016-02-02"),
-                   categorie: {
-                       _id: 1,
-                       name: "macdonalds"
-                   },
-                   total: 100,
-                   comments: ""
-               },
-               {
-                   _id: 1,
-                   date: new Date("2016-02-01"),
-                   categorie: {
-                       _id: 1,
-                       name: "macdonalds"
-                   },
-                   total: 100,
-                   comments: ""
-               }, {
-                   _id: 1,
-                   date: new Date("2016-02-03"),
-                   categorie: {
-                       _id: 1,
-                       name: "macdonalds"
-                   },
-                   total: 100,
-                   comments: ""
-               },
-               {
-                   _id: 1,
-                   date: new Date("2016-02-04"),
-                   categorie: {
-                       _id: 1,
-                       name: "macdonalds"
-                   },
-                   total: 100,
-                   comments: ""
-               },
-   
-   
-               {
-                   _id: 2,
-                   date: new Date("2017-05-02"),
-                   categorie: {
-                       _id: 2,
-                       name: "burgeking"
-                   },
-                   total: 150,
-                   comments: ""
-               },
-   
-           ];
-           await Expense.collection.insertMany(expenses, function (error, docus) { });
-   
-           dateInitial = "2016-02-02"
-           dateEnd = "2016-02-02"
-   
-           var res = await Expense.find({ date: { $lt: dateInitial, $gte: dateEnd } });
-   
-           expect(res.status).toBe(200);
-           expect(res.body.length).toBe(4);*/
+        const expenses = [
+            {
+                _id: 1,
+                date: new Date("2019-02-02"),
+                categorie: {
+                    _id: 1,
+                    name: "macdonalds"
+                },
+                total: 100,
+                comments: ""
+            },
+            {
+                _id: 1,
+                date: new Date("2019-02-01"),
+                categorie: {
+                    _id: 1,
+                    name: "macdonalds"
+                },
+                total: 100,
+                comments: ""
+            }, {
+                _id: 1,
+                date: new Date("2019-02-03"),
+                categorie: {
+                    _id: 1,
+                    name: "macdonalds"
+                },
+                total: 100,
+                comments: ""
+            },
+            {
+                _id: 1,
+                date: new Date("2019-02-04"),
+                categorie: {
+                    _id: 1,
+                    name: "macdonalds"
+                },
+                total: 100,
+                comments: ""
+            },
+
+
+            {
+                _id: 2,
+                date: new Date("2019-05-02"),
+                categorie: {
+                    _id: 2,
+                    name: "burgeking"
+                },
+                total: 150,
+                comments: ""
+            },
+
+        ];
+        await Expense.collection.insertMany(expenses, function (error, docus) { });
+
+        dateInitial = "2019-02-02"
+        dateEnd = "2019-03-30"
+
+       
+        res = await requestClient();
+        expect(res.body.length).toBe(4);
 
     });
 
