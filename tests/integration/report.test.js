@@ -1,11 +1,15 @@
 const request = require('supertest');
 const { Expense } = require('../../models/expense');
+const mongoose = require('mongoose')
+const { Categorie } = require('../../models/categorie');
+
 const api = '/api/report'
 
 
 let server;
 let dateInitial;
 let dateEnd;
+
 
 describe(api, () => {
 
@@ -29,10 +33,9 @@ describe(api, () => {
 
     });
 
+    it('should return all list from range of the date ', async () => {
 
 
-
-    it('should  status 200 OK calculate all buy  categorie macDonals ', async () => {
         const expenses = [
             {
                 _id: 1,
@@ -51,7 +54,7 @@ describe(api, () => {
                     _id: 1,
                     name: "macdonalds"
                 },
-                total: 100,
+                total: 150,
                 comments: ""
             },
             {
@@ -63,22 +66,48 @@ describe(api, () => {
                 },
                 total: 200,
                 comments: ""
+            }, {
+                _id: 4,
+                date: new Date("2019-02-02"),
+                categorie: {
+                    _id: 2,
+                    name: "coffee"
+                },
+                total: 1000,
+                comments: ""
+            },
+            {
+                _id: 5,
+                date: new Date("2019-02-02"),
+                categorie: {
+                    _id: 2,
+                    name: "coffee"
+                },
+                total: 20,
+                comments: ""
+            },
+            {
+                _id: 6,
+                date: new Date("2019-01-02"),
+                categorie: {
+                    _id: 3,
+                    name: "Gas"
+                },
+                total: 150,
+                comments: ""
             }
 
 
+
+
         ];
-        const d1 = await Expense.collection.insertMany(expenses, function (error, docus) { });
+        await Expense.collection.insertMany(expenses, function (error, docus) { });
 
         dateInitial = "'2019-02-01'"
         dateEnd = "2019-02-05"
 
-
         const res = await requestClient();
-
-
-
-
-        expect(res.body.length).toBe(3);
+        expect(res.body.length).toBe(5);
 
     });
 
@@ -90,8 +119,6 @@ describe(api, () => {
         expect(res.status).toBe(400);
 
     });
-
-
 
     it(' should  return  error 400 if validate if dateInital  is format correct', async () => {
         dateInitial = "";

@@ -1,10 +1,24 @@
+const _ = require('lodash');
 const { Expense } = require('../models/expense');
+const { Categorie } = require('../models/categorie');
 const moment = require('moment');
 const asyncMiddleware = require('../middleware/async');
 const { validationesFormatDate, validateDateEndLessDateInitial } = require('../helpers/validationes');
 
 const express = require('express');
 const router = express.Router();
+
+const pipe =
+    [
+        {
+
+            $group: {
+                _id: "$categorie",
+                total: { $sum: '$total' },
+            }
+        }
+    ]
+
 
 router.get('/', asyncMiddleware(async (req, res) => {
 
@@ -20,10 +34,20 @@ router.get('/', asyncMiddleware(async (req, res) => {
     const allData = await Expense.find({
         date: { $gte: dateInitial, $lte: dateEnd }
     });
+    /*
+        const result = await Expense.aggregate([
+            {
+                $group: {
+                    _id: "$categorie",
+                    total: { $sum: "$total" }
+                },
+            }
+        ])
+    
+        console.log(result);*/
+
 
     return res.status(200).send(allData);
-
-
 
 }));
 
