@@ -20,4 +20,12 @@ describe(api, () => {
     beforeEach(async () => {
         server = require('../../index');
     });
+
+    afterEach(async () => {
+        await server.close();
+    })
+    it('should return 400 if name user is min 2 character ', async () => {
+
+    })
+
 });
