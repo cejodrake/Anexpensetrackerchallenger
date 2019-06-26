@@ -1,5 +1,4 @@
 const mongoose = require('')
-const Joi = require('joi');
 
 
 const userSchem = new mongoose.Schema({
@@ -28,3 +27,5 @@ const userSchem = new mongoose.Schema({
 });
 
 const User = mongoose.model("User", userSchem);
+
+exports.User = User;
