@@ -3,6 +3,18 @@ const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 
 
+const validateUser = (user) => {
+
+    const schema = {
+        name: Joi.string().min(2).max(50).required(),
+        email: Joi.string().min(5).max(255).required().email(),
+        password: Joi.string().min(5).max(255).required()
+
+
+    };
+    return Joi.validate(user, schema);
+}
+
 const validateInputsExpenses = (expense) => {
 
     const schema = {
@@ -42,5 +54,6 @@ module.exports.validateDateEndLessDateInitial = validateDateEndLessDateInitial;
 module.exports.validationesFormatDate = validationesFormatDate;
 module.exports.validateInputsExpenses = validateInputsExpenses;
 module.exports.validateInputsCategories = validateInputsCategories;
+module.exports.validateUser = validateUser;
 
 
