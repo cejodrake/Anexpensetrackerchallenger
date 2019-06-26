@@ -1,4 +1,4 @@
-const moment = require('moment');
+
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 
@@ -35,7 +35,6 @@ const validateDateEndLessDateInitial = (dateInitial, dateEnd) => {
     var d1 = new Date(dateInitial);
     var d2 = new Date(dateEnd)
     return d2.getTime() < d1.getTime() ? true : false;
-    return dateEnd.diff(dateInitial, 'day') < 0 ? true : false;
 
 }
 
