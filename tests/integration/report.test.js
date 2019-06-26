@@ -1,7 +1,6 @@
 const request = require('supertest');
 const { Expense } = require('../../models/expense');
-const mongoose = require('mongoose')
-const { Categorie } = require('../../models/categorie');
+
 
 const api = '/api/report'
 
@@ -17,7 +16,7 @@ describe(api, () => {
     dateEnd = '2019-06-19'
 
     const requestClient = () => {
-        return request(server).get(api).send(
+        return request(server).post(api).send(
             { dateInitial, dateEnd }
         );
     }

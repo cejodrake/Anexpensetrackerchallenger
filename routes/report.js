@@ -8,7 +8,7 @@ const { validationesFormatDate, validateDateEndLessDateInitial } = require('../h
 const express = require('express');
 const router = express.Router();
 
-router.get('/', asyncMiddleware(async (req, res) => {
+router.post('/', asyncMiddleware(async (req, res) => {
 
     let dateInitial = moment(req.body.dateInitial);
     let dateEnd = moment(req.body.dateEnd);
@@ -18,8 +18,6 @@ router.get('/', asyncMiddleware(async (req, res) => {
 
     if (!validationesFormatDate(dateInitial, dateEnd))
         return res.status(400).send('Some Field date is not Correct Format');
-
-    console.log("fecha Inicial ---" + dateInitial + "fecha final --- :" + dateEnd)
 
     const allData = await Expense.find({
         date: { $gte: dateInitial, $lte: dateEnd }
