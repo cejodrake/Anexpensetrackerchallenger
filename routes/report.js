@@ -30,14 +30,6 @@ router.get('/', asyncMiddleware(async (req, res) => {
 
     if (!validationesFormatDate(dateInitial, dateEnd))
         return res.status(400).send('Some Field date is not Correct Format');
-
-    console.log(dateInitial + dateEnd)
-
-    const allData = await Expense.find({
-        date: { $gte: dateInitial, $lte: dateEnd }
-    });
-
-    console.log(dateInitial + dateEnd)
     var pipeline = [
 
         {
@@ -65,6 +57,14 @@ router.get('/', asyncMiddleware(async (req, res) => {
     ])*/
 
     console.log(result);
+
+    console.log("fecha Inicial ---" + dateInitial + "fecha final --- :" + dateEnd)
+
+    const allData = await Expense.find({
+        date: { $gte: dateInitial, $lte: dateEnd }
+    });
+
+    console.log(dateInitial + dateEnd)
 
 
     return res.status(200).send(allData);
