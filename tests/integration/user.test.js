@@ -4,6 +4,7 @@ const { User } = require('../../models/user');
 const api = '/api/user'
 
 let server;
+let name;
 let user;
 let password;
 
@@ -11,8 +12,8 @@ let password;
 describe(api, () => {
 
     const requestClient = () => {
-        return reques(server).post(api).send(
-            { user, password }
+        return request(server).post(api).send(
+            { name, user, password }
         );
 
     };
@@ -24,7 +25,10 @@ describe(api, () => {
     afterEach(async () => {
         await server.close();
     })
-    it('should return 400 if name user is min 2 character ', async () => {
+    it('should return error 400 if name user is min 2 character ', async () => {
+        name = "jc";
+        const res = requestClient();
+        expect(res.status).toBe(400);
 
     })
 
