@@ -13,12 +13,8 @@ describe(api, () => {
 
     name = "Juan Carlos Calix";
     password = "JuanCarlos";
-    email = "j_calix202@gmail.com";
+    email = "j_calix2002@hotmail.com";
 
-    const user = [
-        name: "Juan Carlos Calix",
-
-    ]
 
 
     const requestClient = () => {
@@ -34,8 +30,24 @@ describe(api, () => {
     });
     afterEach(async () => {
 
+        await User.remove({});
         await server.close();
 
+    });
+
+    it('should  return 400 if user is already registred', async () => {
+        const user = [
+            {
+                name: "Juan Carlos Calix",
+                password: "1234567",
+                email: "j_calix2002@hotmail.com"
+            }
+        ];
+
+        await User.collection.insertMany(user, function (error, docus) { });
+
+        const res = await requestClient();
+        expect(res.status).toBe(400);
     });
 
     it('should return 400 if email is empty', async () => {
