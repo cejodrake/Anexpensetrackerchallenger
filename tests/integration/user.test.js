@@ -15,6 +15,11 @@ describe(api, () => {
     password = "JuanCarlos";
     email = "j_calix202@gmail.com";
 
+    const user = [
+        name: "Juan Carlos Calix",
+
+    ]
+
 
     const requestClient = () => {
         return request(server).post(api).send(
@@ -32,7 +37,15 @@ describe(api, () => {
         await server.close();
 
     });
-    it('should return 400 if name is less 2 characters', async () => {
+
+    it('should return 400 if email is empty', async () => {
+        email = "";
+
+        const res = await requestClient();
+        expect(res.status).toBe(400);
+    })
+
+    it('should return 400 if name is least 2 characters long', async () => {
         name = "j";
         email = "juan@gmail.com";
         password = "JuanCarlos";
@@ -46,7 +59,6 @@ describe(api, () => {
         name = "Juan Carlos Calix";
         email = "juan@gmail.com";
         password = "JuanCarlos";
-
 
         const res = await requestClient();
         expect(res.status).toBe(200);
