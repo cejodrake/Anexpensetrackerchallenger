@@ -35,6 +35,24 @@ describe(api, () => {
 
     });
 
+    it('should return 200 if user is create success', async () => {
+        const user = [
+            {
+                name: "Juan Carlos Calix",
+                password: "1234567",
+                email: "j_calix2001@hotmail.com"
+            }
+        ];
+
+
+        await User.collection.insertMany(user, function (error, docus) { });
+
+        const res = await requestClient();
+        expect(res.status).toBe(200);
+        expect(res.body.some(n => n.name === "Juan Carlos Calix")).toBeTruthy();
+        expect(res.body.some(e => e.email === "j_calix2001@hotmailcom ")).toBeTruthy();
+    });
+
     it('should  return 400 if user is already registred', async () => {
         const user = [
             {
