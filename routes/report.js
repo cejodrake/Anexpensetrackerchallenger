@@ -10,8 +10,8 @@ const router = express.Router();
 
 router.post('/', asyncMiddleware(async (req, res) => {
 
-    let dateInitial = moment(req.body.dateInitial);
-    let dateEnd = moment(req.body.dateEnd);
+    let dateInitial = moment(req.body.dateInitial, "YYYY-MM-DD");
+    let dateEnd = moment(req.body.dateEnd, "YYYY-MM-DD");
 
     if (validateDateEndLessDateInitial(dateInitial, dateEnd))
         return res.status(400).send('Date End is less than Date Initial');
