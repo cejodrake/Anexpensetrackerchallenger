@@ -61,6 +61,7 @@ describe(api, () => {
 
         const res = await requestClient();
         expect(res.status).toBe(400);
+
     });
 
     it('should return 400 if email is empty', async () => {
