@@ -36,20 +36,15 @@ describe(api, () => {
     });
 
     it('should return 200 if user is create success', async () => {
-        const user = [
-            {
-                name: "Ethan",
-                password: "1234567",
-                email: "j_calix2001@hotmail.com"
-            }
-        ];
 
 
-        await User.collection.insertOne(user, function (error, docus) { });
+
+        //await User.collection.insertOne(user, function (error, docus) { });
 
         const res = await requestClient();
         expect(res.status).toBe(200);
-        expect(res.body).toHaveProperty('name', "Ethan");
+        expect(res.body.name === "Juan Carlos Calix").toBeTruthy();
+        expect(res.body.email === "j_calix2002@hotmail.com").toBeTruthy();
 
     });
 
@@ -84,17 +79,5 @@ describe(api, () => {
         expect(res.status).toBe(400);
 
     })
-    /*
-        it('should return 200 if all reques client is Ok. ', async () => {
-            name = "Juan Carlos Calix";
-            email = "juan@gmail.com";
-            password = "JuanCarlos";
-    
-            const res = await requestClient();
-            expect(res.status).toBe(200);
-    
-        })
-    */
-
 
 });
