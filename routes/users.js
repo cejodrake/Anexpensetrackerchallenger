@@ -26,7 +26,7 @@ router.post('/', asyncMiddleware(async (req, res) => {
 
     console.log(user);
 
-    return res.status(200).send(_.pick(user, ["_id", "name", "email"]));
+    return res.status(200).send(user);
 
 }));
 

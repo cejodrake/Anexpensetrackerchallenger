@@ -38,19 +38,19 @@ describe(api, () => {
     it('should return 200 if user is create success', async () => {
         const user = [
             {
-                name: "Juan Carlos Calix",
+                name: "Ethan",
                 password: "1234567",
                 email: "j_calix2001@hotmail.com"
             }
         ];
 
 
-        await User.collection.insertMany(user, function (error, docus) { });
+        await User.collection.insertOne(user, function (error, docus) { });
 
         const res = await requestClient();
         expect(res.status).toBe(200);
-        expect(res.body.some(n => n.name === "Juan Carlos Calix")).toBeTruthy();
-        expect(res.body.some(e => e.email === "j_calix2001@hotmailcom ")).toBeTruthy();
+        expect(res.body).toHaveProperty('name', "Ethan");
+
     });
 
     it('should  return 400 if user is already registred', async () => {
@@ -84,17 +84,17 @@ describe(api, () => {
         expect(res.status).toBe(400);
 
     })
-
-    it('should return 200 if all reques client is Ok. ', async () => {
-        name = "Juan Carlos Calix";
-        email = "juan@gmail.com";
-        password = "JuanCarlos";
-
-        const res = await requestClient();
-        expect(res.status).toBe(200);
-
-    })
-
+    /*
+        it('should return 200 if all reques client is Ok. ', async () => {
+            name = "Juan Carlos Calix";
+            email = "juan@gmail.com";
+            password = "JuanCarlos";
+    
+            const res = await requestClient();
+            expect(res.status).toBe(200);
+    
+        })
+    */
 
 
 });
