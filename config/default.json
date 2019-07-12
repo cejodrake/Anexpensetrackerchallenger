@@ -1,4 +1,3 @@
 {
-    //   "db": "mongodb://localhost/expensetrackerdb"
     "db": "mongodb://testuser:Danielayandrea--21@ds351107.mlab.com:51107/expensetrackerdb"
 }
