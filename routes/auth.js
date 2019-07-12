@@ -17,8 +17,8 @@ router.post('/', async (req, res) => {
     const validPassowr = await bcrypt.compare(req.body.password, user.password);
     if (!validPassowr) return res.status(400).send('Invalid email or password');
 
-    const token = "12345678" // here should create generate token
-    res.send(token);
+
+    res.send(user);
 });
 
 function validate(req) {
