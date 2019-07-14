@@ -20,7 +20,7 @@ router.post('/', asyncMiddleware(async (req, res) => {
 
     const categorie = new Categorie({
         name: req.body.name
-    }); t
+    });
 
     await categorie.save();
 
