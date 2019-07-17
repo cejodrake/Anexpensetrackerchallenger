@@ -7,7 +7,8 @@ const router = express.Router();
 
 router.get('/', asyncMiddleware(async (req, res) => {
     const categories = await Categorie.find().sort('name');
-    res.send(categories);
+
+    res.status(200).send(categories);
 
 }));
 
@@ -24,7 +25,8 @@ router.post('/', asyncMiddleware(async (req, res) => {
 
     await categorie.save();
 
-    res.send(categorie);
+
+    res.status(200).send(categorie);
 
 }));
 

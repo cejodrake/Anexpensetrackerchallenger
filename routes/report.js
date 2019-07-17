@@ -2,7 +2,7 @@ const _ = require('lodash');
 const { Expense } = require('../models/expense');
 const { Categorie } = require('../models/categorie');
 const moment = require('moment');
-const asyncMiddleware = require('../middleware/async');
+const asyncMiddleware = require('../middleware/async')
 const { validationesFormatDate, validateDateEndLessDateInitial } = require('../helpers/validationes');
 
 const express = require('express');

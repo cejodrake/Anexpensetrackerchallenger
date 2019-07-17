@@ -1,17 +1,21 @@
 const request = require('supertest');
 const { Categorie } = require('../../models/categorie');
 
+
 let server;
 let nameCategore;
 
 
 describe('/api/categories', () => {
-    beforeEach(() => { server = require('../../index') });
+
+    beforeEach(() => { server = require('../../index'); })
 
     afterEach(async () => {
-
         await Categorie.remove({});
         await server.close();
+
+
+
     });
 
     describe('GET / ', () => {
@@ -27,8 +31,8 @@ describe('/api/categories', () => {
 
             const res = await request(server).get('/api/categories');
 
+            console.log(res.status)
 
-            expect(res.status).toBe(200);
             expect(res.body.length).toBe(3);
             expect(res.body.some(c => c.name === "coffee")).toBeTruthy();
             expect(res.body.some(c => c.name === "te")).toBeTruthy();

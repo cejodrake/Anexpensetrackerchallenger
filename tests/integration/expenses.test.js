@@ -10,9 +10,9 @@ describe('/api/expenses', () => {
     beforeEach(async () => { server = require('../../index') });
 
     afterEach(async () => {
-
-        await Expense.remove({});
         await server.close();
+        await Expense.deleteMany({});
+
 
     });
 
@@ -50,7 +50,8 @@ describe('/api/expenses', () => {
             expect(res.status).toBe(200);
             expect(res.body.length).toBe(2);
 
-            expect(res.body.some(e => e.date === "2016-02-02T00:00:00.000Z"
+
+            expect(res.body.some(e => e.date === new Date("2016-02-02").toISOString()
                 && e.total === 100
                 && e.categorie.name === "macdonalds")).toBeTruthy();
 
@@ -82,8 +83,9 @@ describe('/api/expenses', () => {
 
     beforeEach(async () => {
         server = require('../../index');
+
         categorieId = mongoose.Types.ObjectId();
-        date = "2019-10-01";
+        date = new Date("2019-10-02").toISOString();
         total = 100;
         comments = "tes1t";
 
@@ -98,19 +100,17 @@ describe('/api/expenses', () => {
 
     afterEach(async () => {
 
-        await Expense.remove({});
-        await Categorie.remove({})
+        await Expense.deleteMany({});
+        await Categorie.deleteMany({})
         await server.close();
     })
 
-    it('should return all expenses create for the user ', () => {
 
-    });
 
     it('should return error 200 if   has a valid request ', async () => {
 
         const res = await requesClient();
-
+        console.log(res.error)
         expect(res.status).toBe(200);
     });
     it('should return  error 400 if Date is null', async () => {
@@ -130,6 +130,7 @@ describe('/api/expenses', () => {
     });
 
 });
+
 function createExpense(date, categorieId, total, comments) {
     return new Expense({
         date: date,

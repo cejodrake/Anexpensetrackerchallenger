@@ -1,5 +1,6 @@
 const { Expense } = require('../models/expense');
 const { Categorie } = require('../models/categorie');
+const { User } = require('../models/user');
 const asyncMiddleware = require('../middleware/async');
 
 const { validateInputsExpenses } = require('../helpers/validationes');
@@ -11,7 +12,10 @@ const router = express.Router();
 
 router.get('/', asyncMiddleware(async (req, res) => {
     const allExpenses = await Expense.find();
-    res.send(allExpenses);
+
+    if (allExpenses) return res.status(200).send(allExpenses);
+
+    return res.status("400").send("Ups we can't get information!! please contact Admin ");
 
 }));
 
@@ -28,12 +32,17 @@ router.post('/', asyncMiddleware(async (req, res) => {
     if (!categorie) {
         return res.status(400).send("Invalid categorie ");
     }
-
+    /*
+        const user = await User.findById(req.body.email);
+        if (!user) {
+            return res.status(400).send("Your email was not registred");
+        }
+    */
     const expense = createExpense(req, categorie);
 
     await expense.save();
 
-    res.send(expense);
+    res.status(200).send(expense);
 
 }));
 
@@ -48,6 +57,8 @@ function createExpense(req, categorie) {
         },
         total: req.body.total,
         comments: req.body.comments
+
+
     })
 
 

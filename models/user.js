@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-const userSchem = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
 
     name: {
         type: String,
@@ -10,7 +10,6 @@ const userSchem = new mongoose.Schema({
         maxlength: 50,
 
     },
-
     email: {
         type: String,
         require: true,
@@ -27,7 +26,7 @@ const userSchem = new mongoose.Schema({
     isAdmin: Boolean
 });
 
-userSchem.methods.generateAuthToken = function () {
+userSchema.methods.generateAuthToken = function () {
     const token = jwt.sign(
         {
             _id: this._id,
@@ -39,6 +38,9 @@ userSchem.methods.generateAuthToken = function () {
     );
     return token;
 }
-const User = mongoose.model("User", userSchem);
+
+
+const User = mongoose.model("User", userSchema);
 
 exports.User = User;
+//exports.userSchema = userSchema;

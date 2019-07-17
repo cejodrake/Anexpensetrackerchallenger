@@ -27,8 +27,9 @@ describe(api, () => {
 
     });
     afterEach(async () => {
-        await Expense.remove({});
+
         await server.close();
+        await Expense.remove({});
 
     });
 
@@ -44,7 +45,7 @@ describe(api, () => {
                     name: "macdonalds"
                 },
                 total: 100,
-                comments: ""
+                comments: "test"
             },
             {
                 _id: 2,
@@ -54,7 +55,7 @@ describe(api, () => {
                     name: "macdonalds"
                 },
                 total: 150,
-                comments: ""
+                comments: "text1"
             },
             {
                 _id: 3,
@@ -64,7 +65,7 @@ describe(api, () => {
                     name: "macdonalds"
                 },
                 total: 200,
-                comments: ""
+                comments: "tes1"
             }, {
                 _id: 4,
                 date: new Date("2019-02-02"),
@@ -73,7 +74,7 @@ describe(api, () => {
                     name: "coffee"
                 },
                 total: 1000,
-                comments: ""
+                comments: "tes2"
             },
             {
                 _id: 5,
@@ -83,7 +84,7 @@ describe(api, () => {
                     name: "coffee"
                 },
                 total: 20,
-                comments: ""
+                comments: "test3"
             },
             {
                 _id: 6,
@@ -93,19 +94,24 @@ describe(api, () => {
                     name: "Gas"
                 },
                 total: 150,
-                comments: ""
+                comments: "test2"
             }
 
 
 
 
         ];
-        await Expense.collection.insertMany(expenses, function (error, docus) { });
-
+        try {
+            await Expense.collection.insertMany(expenses, function (error, docus) { });
+        }
+        catch (e) {
+            print(e);
+        }
         dateInitial = "'2019-02-01'"
         dateEnd = "2019-02-05"
 
         const res = await requestClient();
+        console.log(res.body)
         expect(res.body.length).toBe(5);
 
     });

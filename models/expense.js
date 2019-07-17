@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { categorieSchema } = require('./categorie');
+const { userSchema } = require('./user');
 
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
@@ -21,7 +22,8 @@ const Expense = mongoose.model('Expenses', new mongoose.Schema({
     comments: {
         type: String,
         required: true
-    }
+    },
+
 }))
 
 exports.Expense = Expense;
