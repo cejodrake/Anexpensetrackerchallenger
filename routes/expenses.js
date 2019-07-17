@@ -32,12 +32,7 @@ router.post('/', asyncMiddleware(async (req, res) => {
     if (!categorie) {
         return res.status(400).send("Invalid categorie ");
     }
-    /*
-        const user = await User.findById(req.body.email);
-        if (!user) {
-            return res.status(400).send("Your email was not registred");
-        }
-    */
+
     const expense = createExpense(req, categorie);
 
     await expense.save();
@@ -56,8 +51,8 @@ function createExpense(req, categorie) {
             name: categorie.name
         },
         total: req.body.total,
-        comments: req.body.comments
-
+        comments: req.body.comments,
+        email: req.body.email
 
     })
 

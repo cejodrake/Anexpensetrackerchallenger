@@ -101,17 +101,15 @@ describe(api, () => {
 
 
         ];
-        try {
-            await Expense.collection.insertMany(expenses, function (error, docus) { });
-        }
-        catch (e) {
-            print(e);
-        }
+
+        await Expense.collection.insertMany(expenses, function (error, docus) { });
+
+
         dateInitial = "'2019-02-01'"
         dateEnd = "2019-02-05"
 
         const res = await requestClient();
-        console.log(res.body)
+
         expect(res.body.length).toBe(5);
 
     });

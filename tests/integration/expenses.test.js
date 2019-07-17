@@ -73,11 +73,12 @@ describe('/api/expenses', () => {
     let categorieId;
     let comments;
     let total;
+    let email;
 
 
     const requesClient = () => {
         return request(server).post('/api/expenses')
-            .send({ date, categorieId, total, comments });
+            .send({ date, categorieId, total, comments, email });
 
     };
 
@@ -88,14 +89,16 @@ describe('/api/expenses', () => {
         date = new Date("2019-10-02").toISOString();
         total = 100;
         comments = "tes1t";
-
-
+        email = "j_calix2002@hotmail.com"
         categorie = createCategorie(categorieId);
 
-        expense = createExpense(date, categorieId, total, comments);
+        expense = createExpense(date, categorieId, total, comments, email);
+
+
 
         await categorie.save();
         await expense.save();
+
     });
 
     afterEach(async () => {
@@ -131,7 +134,7 @@ describe('/api/expenses', () => {
 
 });
 
-function createExpense(date, categorieId, total, comments) {
+function createExpense(date, categorieId, total, comments, email) {
     return new Expense({
         date: date,
         categorie: {
@@ -139,7 +142,8 @@ function createExpense(date, categorieId, total, comments) {
             name: "burger king"
         },
         total: total,
-        comments: comments
+        comments: comments,
+        email: email
 
 
     });

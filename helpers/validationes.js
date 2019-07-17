@@ -21,7 +21,8 @@ const validateInputsExpenses = (expense) => {
         categorieId: Joi.objectId().required(),
         total: Joi.number().min(0).required(),
         comments: Joi.string().max(50),
-        date: Joi.date().required()
+        date: Joi.date().required(),
+        email: Joi.string().required()
     };
 
     return Joi.validate(expense, schema);
