@@ -8,16 +8,18 @@ const api = '/api/report'
 let server;
 let dateInitial;
 let dateEnd;
+let email
 
 
 describe(api, () => {
 
     dateInitial = '2019-06-19';
     dateEnd = '2019-06-19'
+    email = 'j_calix2002@hotmail.com'
 
     const requestClient = () => {
         return request(server).post(api).send(
-            { dateInitial, dateEnd }
+            { dateInitial, dateEnd, email }
         );
     }
 
@@ -45,7 +47,8 @@ describe(api, () => {
                     name: "macdonalds"
                 },
                 total: 100,
-                comments: "test"
+                comments: "test",
+                email: "j_calix2002@hotmail.com"
             },
             {
                 _id: 2,
@@ -55,7 +58,8 @@ describe(api, () => {
                     name: "macdonalds"
                 },
                 total: 150,
-                comments: "text1"
+                comments: "text1",
+                email: "j_calix2002@hotmail.com"
             },
             {
                 _id: 3,
@@ -65,7 +69,8 @@ describe(api, () => {
                     name: "macdonalds"
                 },
                 total: 200,
-                comments: "tes1"
+                comments: "tes1",
+                email: "j_calix2002@hotmail.com"
             }, {
                 _id: 4,
                 date: new Date("2019-02-02"),
@@ -74,7 +79,8 @@ describe(api, () => {
                     name: "coffee"
                 },
                 total: 1000,
-                comments: "tes2"
+                comments: "tes2",
+                email: "j_calix2002@hotmail.com"
             },
             {
                 _id: 5,
@@ -84,7 +90,8 @@ describe(api, () => {
                     name: "coffee"
                 },
                 total: 20,
-                comments: "test3"
+                comments: "test3",
+                email: "j_calix2002@hotmail.com"
             },
             {
                 _id: 6,
@@ -94,7 +101,8 @@ describe(api, () => {
                     name: "Gas"
                 },
                 total: 150,
-                comments: "test2"
+                comments: "test2",
+                email: "j_calix2002@hotmail.com"
             }
 
 
