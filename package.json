@@ -1,37 +1,38 @@
 {
-  "name": "challenger",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "test": "jest --watchAll --verbose --runInBand"
-  },
-  "engines": {
-    "node": "10.15.3"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^3.0.6",
-    "compression": "^1.7.4",
-    "config": "^3.2.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "express-async-errors": "^3.1.1",
-    "helmet": "^3.18.0",
-    "jest": "^24.8.0",
-    "joi": "^13.7.0",
-    "joi-objectid": "^2.0.0",
-    "lodash": "^4.17.14",
-    "mogoose": "^3.1.8",
-    "moment": "^2.24.0",
-    "mongoose": "^5.6.9",
-    "supertest": "^4.0.2"
-  },
-  "directories": {
-    "test": "tests"
-  },
-  "description": "This is a Back end was create using Node, Express, and MongDB.",
-  "devDependencies": {}
+    "name": "challenger",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "test": "jest --watchAll --verbose --runInBand"
+    },
+    "engines": {
+        "node": "10.15.3",
+        "npm": "6.10.3"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^3.0.6",
+        "compression": "^1.7.4",
+        "config": "^3.2.0",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "express-async-errors": "^3.1.1",
+        "helmet": "^3.18.0",
+        "jest": "^24.8.0",
+        "joi": "^13.7.0",
+        "joi-objectid": "^2.0.0",
+        "lodash": "^4.17.14",
+        "mogoose": "^3.1.8",
+        "moment": "^2.24.0",
+        "mongoose": "^5.6.4",
+        "supertest": "^4.0.2"
+    },
+    "directories": {
+        "test": "tests"
+    },
+    "description": "This is a Back end was create using Node, Express, and MongDB.",
+    "devDependencies": {}
 }
