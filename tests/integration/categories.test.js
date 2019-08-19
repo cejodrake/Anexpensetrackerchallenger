@@ -31,8 +31,6 @@ describe('/api/categories', () => {
 
             const res = await request(server).get('/api/categories');
 
-            console.log(res.status)
-
             expect(res.body.length).toBe(3);
             expect(res.body.some(c => c.name === "coffee")).toBeTruthy();
             expect(res.body.some(c => c.name === "te")).toBeTruthy();
