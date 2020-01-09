@@ -27,7 +27,7 @@
         "joi-objectid": "^2.0.0",
         "lodash": "^4.17.14",
         "moment": "^2.24.0",
-        "mongoose": "^5.6.4",
+        "mongoose": "^5.7.5",
         "supertest": "^4.0.2"
     },
     "directories": {
