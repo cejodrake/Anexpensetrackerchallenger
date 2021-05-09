@@ -25,7 +25,7 @@
         "jest": "^24.8.0",
         "joi": "^13.7.0",
         "joi-objectid": "^2.0.0",
-        "lodash": "^4.17.14",
+        "lodash": "^4.17.21",
         "moment": "^2.24.0",
         "mongoose": "^5.6.4",
         "supertest": "^4.0.2"
